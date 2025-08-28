@@ -92,3 +92,7 @@ python pdf_splitter.py <path_to_pdf> [list_of_pages]
   ```
 
 The resulting ZIP file will be saved in `./output/filename_pages.zip`.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
