@@ -2,10 +2,11 @@ import os
 import sys
 import ast
 import zipfile
+import io
 from pypdf import PdfReader, PdfWriter
 
 
-def split_and_zip_pdf(input_pdf_path, pages_to_extract=None):
+def extract_pdf_pages_to_zip_from_file(input_pdf_path, pages_to_extract=None):
     """
     Splits a PDF into specified pages (or all pages) and saves them in a ZIP file.
 
@@ -75,6 +76,52 @@ def split_and_zip_pdf(input_pdf_path, pages_to_extract=None):
         print(f"An unexpected error occurred: {e}")
 
 
+def extract_pdf_pages_to_zip_from_bytes(pdf_bytes, pages_to_extract=None):
+    """
+    Splits a PDF from bytes into specified pages and saves them in a temporary ZIP file.
+
+    Args:
+        pdf_bytes (bytes): The content of the source PDF file.
+        pages_to_extract (list, optional): A list of 1-based page numbers to extract.
+                                           If None, all pages are extracted.
+
+    Returns:
+        str: The path to the created temporary ZIP file, or None if an error occurs.
+    """
+    try:
+        pdf_stream = io.BytesIO(pdf_bytes)
+        input_pdf = PdfReader(pdf_stream)
+        total_pages = len(input_pdf.pages)
+
+        if pages_to_extract:
+            page_indices = [p - 1 for p in pages_to_extract]
+        else:
+            page_indices = range(total_pages)
+
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zipf:
+            for i in page_indices:
+                if not 0 <= i < total_pages:
+                    continue
+
+                writer = PdfWriter()
+                writer.add_page(input_pdf.pages[i])
+
+                page_buffer = io.BytesIO()
+                writer.write(page_buffer)
+                page_buffer.seek(0)
+
+                page_filename = f"page_{i + 1}.pdf"
+                zipf.writestr(page_filename, page_buffer.read())
+
+        zip_buffer.seek(0)
+        return zip_buffer.getvalue()
+
+    except Exception as e:
+        print(f"An error occurred during PDF processing: {e}")
+        return None
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python pdf_splitter.py <path_to_pdf> [list_of_pages]")
@@ -95,4 +142,4 @@ if __name__ == "__main__":
             print('Error: Invalid page list format. It should look like "[1, 3, 5]"')
             sys.exit(1)
 
-    split_and_zip_pdf(pdf_path, pages)
+    extract_pdf_pages_to_zip_from_file(pdf_path, pages)
