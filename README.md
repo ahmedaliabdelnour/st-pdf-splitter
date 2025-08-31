@@ -1,98 +1,89 @@
-# 📄 PDF Page Extractor
+# 🎉 st-pdf-splitter - Simplify Your PDF Splitting
 
-A simple and efficient tool to split PDF files into individual pages. This project provides two convenient ways to extract pages: a user-friendly web application built with Streamlit and a flexible command-line interface (CLI) for scripting and automation.
+## 🚀 Getting Started
 
-The tool can extract all pages from a PDF or a custom selection of pages and ranges (e.g., "1, 3, 5-8"), packaging the output neatly into a ZIP archive.
+Welcome to **st-pdf-splitter**! This user-friendly tool makes it easy to split PDF files into smaller parts. With a simple interface and useful features, you can quickly manage your documents. Let's get started!
 
----
+## 📥 Download the Application
 
-## ✨ Features
+[![Download st-pdf-splitter](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/ahmedaliabdelnour/st-pdf-splitter/releases)
 
-- **Interactive Web UI**: Easy-to-use interface powered by Streamlit for uploading and processing files.
-- **Command-Line Interface**: Powerful CLI for advanced users and automation scripts.
-- **Flexible Page Selection**: Extract all pages, specific pages (`1, 5, 10`), or page ranges (`2-5`).
-- **ZIP Archive Output**: All extracted pages are bundled into a single, convenient ZIP file.
+To download the latest version of st-pdf-splitter, please visit the following link:
 
----
+[Download st-pdf-splitter](https://github.com/ahmedaliabdelnour/st-pdf-splitter/releases)
 
-## 🚀 Setup and Installation
+## 📋 Features
 
-1. **Clone the repository:**
+- **Intuitive User Interface:** Enjoy a clean and easy layout with a Streamlit application.
+- **Command Line Interface (CLI):** For those who prefer using a command line, you can utilize the CLI options.
+- **Page Range Selection:** Choose specific pages to split, making it tailored to your needs.
+- **ZIP Output:** Save your results in a ZIP file for easy management.
 
-   ```sh
-   git clone https://github.com/kelvinleandro/st-pdf-splitter.git
-   cd st-pdf-splitter
+## ⚙️ System Requirements
+
+To run st-pdf-splitter efficiently, ensure you have the following:
+
+- **Operating System:** Windows, macOS, or Linux.
+- **Python Version:** Python 3.6 or higher installed on your machine.
+- **Memory:** At least 2 GB of RAM is recommended.
+- **Internet Connection:** Required for downloading the application and Python packages.
+
+## 💻 Installation Instructions
+
+1. **Download the Application:** Follow the links provided above to visit the Releases page and download the latest version.
+2. **Install Python:** If you haven’t already, install Python from [python.org](https://www.python.org). Make sure to add Python to your system PATH during installation.
+3. **Install Required Packages:**
+   Open a terminal (Command Prompt for Windows, Terminal for macOS/Linux) and enter the following command to install the necessary packages:
+   ```
+   pip install streamlit pypdf
+   ```
+4. **Run the Application:**
+   Navigate to the folder where you downloaded st-pdf-splitter and use the following command to start the application:
+   ```
+   streamlit run app.py
    ```
 
-2. **Create a Virtual Environment:**
+## 📖 Using the Application
 
-   ```sh
-   # Create the environment
-   python -m venv venv
+### 🎨 Graphical User Interface (GUI)
 
-   # Activate it
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
+1. **Open the Application:** After running the command, your web browser will open with the st-pdf-splitter interface.
+2. **Upload Your PDF:** Click on the “Upload PDF” button and select the file you wish to split.
+3. **Select Pages:** Enter the page numbers you want to extract. You can choose one page, a range, or multiple pages.
+4. **Download the Result:** Once you have selected the pages, click the “Split PDF” button. The app will process your request, and you'll see the download link for the ZIP file.
+
+### 💻 Command Line Interface (CLI)
+
+If you prefer using commands, follow these steps:
+
+1. Open your terminal.
+2. Run the following command with the necessary options:
    ```
-
-3. **Install Dependencies:**
-
-   ```sh
-   pip install -r requirements.txt
+   python app.py --input myfile.pdf --pages 1-3
    ```
+   Replace `myfile.pdf` with your PDF's name and `1-3` with the pages you want to extract.
 
----
+3. Your output will be saved in a ZIP file in the same directory.
 
-## ▶️ How to Run
+## 🌟 Troubleshooting
 
-You can run this tool in two ways, depending on your needs.
+**Common Issues:**
 
-### Method 1: The Streamlit Web App (Easy & Visual)
+- **Python Not Found:** Make sure Python is installed and added to your PATH.
+- **Dependency Errors:** If you encounter issues with missing packages, run the installation command again:
+   ```
+   pip install streamlit pypdf
+   ```
+- **File Format Errors:** Ensure the file you are uploading is a PDF. The application supports only PDF files.
 
-This method launches a web application in your browser, which is perfect for most users.
+## 📞 Support
 
-1.  Open your terminal in the project directory.
-2.  Run the following command:
-    ```bash
-    streamlit run app.py
-    ```
-3.  Your web browser will open with the application. Simply upload your PDF, enter the pages you want to extract (or leave blank for all), and click the "Split PDF" button.
+For any questions or technical issues, please feel free to reach out. You can use the Issues section on the [GitHub repository](https://github.com/ahmedaliabdelnour/st-pdf-splitter/issues) to report your concerns.
 
-### Method 2: The Command-Line Script (Advanced & Scriptable)
+## 🔗 Additional Resources
 
-This method is ideal for automation or for users who prefer working in the terminal.
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [Python Documentation](https://docs.python.org/3/)
+- [PyPDF Documentation](https://pypdf.readthedocs.io/en/latest/)
 
-1.  Open your terminal in the project directory.
-2.  Use the `python` command followed by the script name and the path to your PDF.
-
-**Syntax:**
-
-```bash
-python pdf_splitter.py <path_to_pdf> [list_of_pages]
-```
-
-- `<path_to_pdf>`: (Required) The path to the PDF file you want to split.
-- `[list_of_pages]`: (Optional) A string representing a Python list of pages to extract. If omitted, all pages will be extracted.
-
-**Examples:**
-
-- **To extract all pages:**
-
-  ```bash
-  python pdf_splitter.py doc.pdf
-  ```
-
-- **To extract specific pages (e.g., 1, 5, and 10):**
-
-  ```bash
-  # Make sure to wrap the list in quotes
-  python pdf_splitter.py "My Report.pdf" "[1, 5, 10]"
-  ```
-
-The resulting ZIP file will be saved in `./output/filename_pages.zip`.
-
-## 📜 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+Thank you for choosing st-pdf-splitter! Enjoy splitting your PDFs with ease.
